@@ -35,8 +35,16 @@ namespace Toltech.ComputeEngine.Contracts
         /// </summary>
         public bool IsSuccess { get; init; }
 
+        public ConcurrentDictionary<int, SolveResults> ResultsNew { get; init; }
+            = new();
         /// <summary>
         /// Résultats bruts du calcul (structure actuelle conservée).
+        /// </summary>
+        public ConcurrentDictionary<int, List<PrimaryResults>> DetailedResults { get; init; }
+            = new();
+
+        /// <summary>
+        /// refacto 
         /// </summary>
         public ConcurrentDictionary<int, List<PrimaryResults>> Results { get; init; }
             = new();
@@ -58,6 +66,32 @@ namespace Toltech.ComputeEngine.Contracts
 
     }
 
+    public sealed class DecompositionResults
+    {
+        public int IdData { get; set; }
+        public UnknownType Type { get; set; }
+        public double InflX { get; set; }
+        public double InflY { get; set; }
+        public double InflZ { get; set; }
+
+    }
+
+    public sealed class SolveResults
+    {
+        public List<PrimaryResults> Summary { get; init; } = new();
+
+        public List<DecompositionResults> Details { get; init; } = new();
+    }
+
+    public enum UnknownType
+    {
+        RotA,
+        RotB,
+        RotC,
+        Tu,
+        Tv,
+        Tw
+    }
     public sealed class ComputeModelData
     {
         public int Id { get; init; }
@@ -65,25 +99,94 @@ namespace Toltech.ComputeEngine.Contracts
         public int OriginePartId { get; init; }
         public int? ExtremitePartId { get; init; }
 
+
         public bool Active { get; init; }
 
         public double CoordX { get; init; }
         public double CoordY { get; init; }
         public double CoordZ { get; init; }
+        public double CoordX2 { get; init; }
+        public double CoordY2 { get; init; }
+        public double CoordZ2 { get; init; }
 
         public double CoordU { get; init; }
         public double CoordV { get; init; }
         public double CoordW { get; init; }
+        public double CoordU2 { get; init; }
+        public double CoordV2 { get; init; }
+        public double CoordW2 { get; init; }
 
-        public double TolOri { get; init; }
-        public double TolInt { get; init; }
-        public double TolExtr { get; init; }
+        #region Tolérances
+// TODO tolerance
 
-        public int IdTolOri { get; init; }
-        public int IdTolInt { get; init; }
-        public int IdTolExtre { get; init; }
+
+
+        #endregion
+
+ 
 
         public string? Model { get; init; }
+
+        public LinkageType Linkage { get; init; }
+
+
+        public ToleranceTriplet N { get; init; } = new();
+
+        public ToleranceTriplet T1 { get; init; } = new();
+
+        public ToleranceTriplet T2 { get; init; } = new();
+        public ToleranceTriplet Rn { get; init; } = new();
+
+        public ToleranceTriplet RT1 { get; init; } = new();
+        public ToleranceTriplet RT2 { get; init; } = new();
+    }
+
+
+
+        public class ToleranceTriplet
+    {
+        public ToleranceDefinition Origin { get; set; } = new();
+
+        public ToleranceDefinition Intermediate { get; set; } = new();
+
+        public ToleranceDefinition Extremity { get; set; } = new();
+    }
+
+    public sealed class ToleranceDefinition
+    {
+        public double Value { get; set; }
+
+        public string Description { get; set; }
+
+        public string Name { get; set; }
+
+        public bool UseDatabase { get; set; }
+
+        public int ToleranceId { get; set; }
+    }
+
+    /// <summary>
+    /// Types de liaison mécaniques possibles
+    /// </summary>
+    public enum LinkageType
+    {
+        PointContact = 0,       // Liaison ponctuelle
+        LinearContact = 1,      // Liaison linéaire rectiligne
+        AnnularContact = 2,     // Liaison linéaire annulaire
+        PlanarContact = 3,      // Appui plan
+
+        RevoluteContact = 4,    // Liaison pivot
+        PrismaticContact = 5,   // Liaison glissière
+        CylindricalContact = 6, // Liaison pivot glissant
+
+        //HelicalContact = 7,   // Liaison hélicoïdale
+
+        SphericalContact = 8,   // Liaison rotule
+
+        //PinSlotContact = 9,   // Rotule à doigt
+
+        FixedContact = 10,       // Liaison encastrement
+        Requirement = 11       // Liaison encastrement
     }
 
     public sealed class ComputeRequirement
