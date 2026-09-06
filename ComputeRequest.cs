@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace Toltech.ComputeEngine.Contracts
+namespace Toltech.Solver.Contracts
 {
     /// <summary>
     /// Représente les données d'entrée du moteur de calcul.
@@ -11,7 +11,7 @@ namespace Toltech.ComputeEngine.Contracts
         /// <summary>
         /// Données du modèle (inchangé).
         /// </summary>
-        public List<ComputeModelData> ModelData { get; init; } = new();
+        public List<ComputeLinkage> ModelData { get; init; } = new();
 
         /// <summary>
         /// Exigences à calculer (inchangé).
@@ -92,7 +92,7 @@ namespace Toltech.ComputeEngine.Contracts
         Tv,
         Tw
     }
-    public sealed class ComputeModelData
+    public sealed class ComputeLinkage
     {
         public int Id { get; init; }
 
@@ -108,7 +108,6 @@ namespace Toltech.ComputeEngine.Contracts
         public double CoordX2 { get; init; }
         public double CoordY2 { get; init; }
         public double CoordZ2 { get; init; }
-
         public double CoordU { get; init; }
         public double CoordV { get; init; }
         public double CoordW { get; init; }
@@ -117,15 +116,15 @@ namespace Toltech.ComputeEngine.Contracts
         public double CoordW2 { get; init; }
 
         #region Tolérances
-// TODO tolerance
+        // TODO tolerance
 
 
 
         #endregion
 
- 
 
-        public string? Model { get; init; }
+
+        public string? Name { get; init; }
 
         public LinkageType Linkage { get; init; }
 
@@ -143,7 +142,7 @@ namespace Toltech.ComputeEngine.Contracts
 
 
 
-        public class ToleranceTriplet
+    public class ToleranceTriplet
     {
         public ToleranceDefinition Origin { get; set; } = new();
 

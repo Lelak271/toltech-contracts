@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Toltech.ComputeEngine.Contracts.Properties {
+namespace Toltech.Solver.Contracts.Properties {
     using System;
     
     

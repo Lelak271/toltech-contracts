@@ -1,6 +1,4 @@
-﻿using Toltech.ComputeEngine.Contracts;
-
-namespace Toltech.ComputeEngine.Contracts
+﻿namespace Toltech.Solver.Contracts
 {
     /// <summary>
     /// Interface for the compute engine, responsible for performing calculations based on the provided requirements and returning the results in a concurrent dictionary format.
@@ -9,9 +7,9 @@ namespace Toltech.ComputeEngine.Contracts
     {
         Task<ComputeResult> ComputeAsync(ComputeRequest request);
 
-        Task<bool> IsPartIsostaticAsync(List<ComputeModelData> modelData, ComputePart part);
+        Task<bool> IsPartIsostaticAsync(List<ComputeLinkage> modelData, ComputePart part);
 
-        Task<bool> IsModelIsostaticAsync(List<ComputeModelData> modelData, int partId1, int partId2, int idFixPart = 0);
+        Task<bool> IsModelIsostaticAsync(List<ComputeLinkage> modelData, int partId1, int partId2, int idFixPart = 0);
 
     }
 }

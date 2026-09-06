@@ -6,11 +6,11 @@
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
 
-		<AssemblyName>Toltech.ComputeEngine.Contracts</AssemblyName>
-		<RootNamespace>Toltech.ComputeEngine.Contracts</RootNamespace>
+		<AssemblyName>Toltech.Solver.Contracts</AssemblyName>
+		<RootNamespace>Toltech.Solver.Contracts</RootNamespace>
 
 		<!-- Métadonnées NuGet -->
-		<PackageId>Toltech.ComputeEngine.Contracts</PackageId>
+		<PackageId>Toltech.Solver.Contracts</PackageId>
 		<Version>1.0.0</Version>
 		<Authors>PERIER Louis</Authors>
 		<Company>Toltech Corporation</Company>
