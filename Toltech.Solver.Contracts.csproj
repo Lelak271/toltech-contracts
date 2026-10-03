@@ -7,7 +7,6 @@
 		<LangVersion>latest</LangVersion>
 
 		<AssemblyName>Toltech.Solver.Contracts</AssemblyName>
-		<RootNamespace>Toltech.Solver.Contracts</RootNamespace>
 
 		<!-- Métadonnées NuGet -->
 		<PackageId>Toltech.Solver.Contracts</PackageId>
